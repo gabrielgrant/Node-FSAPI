@@ -228,7 +228,7 @@ server.get(commandRegEx, function (req, res, next) {
     checkReq(config, req, res);
 
     // Set path
-    var path = config.base + "/" + req.params[2];
+    var path = config.base + "/" + decodeURIComponent(req.params[2]);
 
     switch (req.params[1]) {
         // List contents of directory
@@ -292,7 +292,7 @@ server.get(commandRegEx, function (req, res, next) {
               if (err) {
                   resError(102, err, res);
               } else {
-                  var escapedFilename = req.params[2].replace('\\', '\\\\').replace('"', '\\"');
+                  var escapedFilename = decodeURIComponent(req.params[2]).replace('\\', '\\\\').replace('"', '\\"');
                   res.writeHead(200, {
                     'Content-Disposition': 'attachment; filename="' + escapedFilename + '"'
                   });
@@ -324,7 +324,7 @@ server.post(commandRegEx, function (req, res, next) {
     checkReq(config, req, res);
 
     // Set path
-    var path = config.base + "/" + req.params[2];
+    var path = config.base + "/" + decodeURIComponent(req.params[2]);
 
     switch (req.params[1]) {
 
@@ -420,7 +420,7 @@ server.put(commandRegEx, function (req, res, next) {
     checkReq(config, req, res);
 
     // Set path
-    var path = config.base + "/" + req.params[2];
+    var path = config.base + "/" + decodeURIComponent(req.params[2]);
 
     switch (req.params[1]) {
 
