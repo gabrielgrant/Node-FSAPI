@@ -3,8 +3,7 @@
 var config = {
     // Authentication keys
     keys: [
-        "12345",
-        "67890"
+        "pfs"
     ],
     /**
      * Allowed IP's or ranges
