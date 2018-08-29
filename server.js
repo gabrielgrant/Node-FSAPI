@@ -23,7 +23,7 @@ var config = {
     // Port designation
     port: 8080,
     // Base directory
-    base: "/tmp",
+    base: "/tmp/fs-root",
     // Default create mode
     cmode: "0755"
 };
