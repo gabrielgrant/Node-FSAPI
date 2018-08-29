@@ -292,8 +292,9 @@ server.get(commandRegEx, function (req, res, next) {
               if (err) {
                   resError(102, err, res);
               } else {
+                  var escapedFilename = req.params[2].replace('\\', '\\\\').replace('"', '\\"');
                   res.writeHead(200, {
-                    'Content-Disposition': 'attachment; filename=' + req.params[2]
+                    'Content-Disposition': 'attachment; filename="' + escapedFilename + '"'
                   });
                   res.end(data);
               }
