@@ -65,6 +65,16 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.CORS());
 
+// workaround for broken CORS
+// https://github.com/restify/node-restify/issues/664#issuecomment-54994501
+server.opts(/\.*/, function (req, res, next) {
+
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Origin', '*');
+	res.send(200);
+	next();
+});
+
 // Regular Expressions
 var commandRegEx = /^\/([a-zA-Z0-9_\.~-]+)\/([a-zA-Z0-9_\.~-]+)\/(.*)/,  // /{key}/{command}/{path}
     pathRegEx = /^\/([a-zA-Z0-9_\.~-]+)\/(.*)/;  // /{key}/{path}
